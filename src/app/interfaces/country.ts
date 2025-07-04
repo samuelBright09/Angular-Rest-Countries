@@ -4,6 +4,8 @@ export interface Country {
     capital:    string[];
     region:     Region;
     population: number;
+    cca3:       string;
+    borders?:   string[];
 }
 
 export interface Flags {
@@ -30,5 +32,8 @@ export type Region = "Africa" | "Asia" | "Oceania" | "Europe" | "Americas" | "An
 export interface CountryState {
   country?: Country;
   countries: Country[];
+  selectedRegion: string;
+  filteredCountries?: Country[];
+  regions?: string[];
   loading: boolean;
 }

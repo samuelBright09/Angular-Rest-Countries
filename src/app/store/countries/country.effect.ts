@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from "rxjs";
 import { CountriesService } from "../../services/countries.service";
-import { loadCountries, loadCountriesSuccess, loadCountry, loadCountrySuccess } from "./country.actions";
+import { loadCountries, loadCountriesSuccess, loadCountry, loadCountrySuccess, loadRegions, loadRegionsSuccess } from "./country.actions";
 
 @Injectable()
 export class CountryEffects {
@@ -19,6 +19,21 @@ export class CountryEffects {
           map((countries) => loadCountriesSuccess({ countries })),
           catchError((error) => {
             console.error('Error loading countries:', error);
+            return [];
+          })
+        )
+      )
+    )
+  );
+
+  loadRegions$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadRegions),
+      switchMap(() =>
+        this.countryService.getRegions().pipe(
+          map((regions) => loadRegionsSuccess({ regions })),
+          catchError((error) => {
+            console.error('Error loading regions:', error);
             return [];
           })
         )

@@ -1,25 +1,40 @@
-import { createReducer, on } from "@ngrx/store";
-import { CountryState } from "../../interfaces/country";
-import { loadCountries, loadCountriesSuccess, loadCountrySuccess } from "./country.actions";
-
-
-
+import { createReducer, on } from '@ngrx/store';
+import { CountryState } from '../../interfaces/country';
+import {
+  loadCountries,
+  loadCountriesSuccess,
+  loadCountrySuccess,
+  loadRegionsSuccess,
+  setSelectedRegion,
+} from './country.actions';
 
 const initialState: CountryState = {
   countries: [],
+  filteredCountries: [],
   loading: false,
-  // error: null
+  selectedRegion: '',
 };
 
 export const countryReducer = createReducer(
   initialState,
   on(loadCountries, (state) => ({ ...state, loading: true })),
   on(loadCountriesSuccess, (state, { countries }) => {
-
     return {
       ...state,
       countries,
       loading: false,
+    };
+  }),
+  on(loadRegionsSuccess, (state, { regions }) => {
+    return {
+      ...state,
+      regions,
+    };
+  }),
+  on(setSelectedRegion, (state, { region }) => {
+    return {
+      ...state,
+      selectedRegion: region,
     };
   }),
   // on(loadCountry, (state) => {
@@ -28,7 +43,7 @@ export const countryReducer = createReducer(
   //     loading: true,
   //   };
   // }),
-  
+
   on(loadCountrySuccess, (state, { country }) => {
     return {
       ...state,

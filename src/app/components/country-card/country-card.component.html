@@ -1,1 +1,29 @@
 
+<div class="country-card" (click)="onClick(country.cca3)">
+  <div class="flag-container">
+    <img 
+      [src]="country.flags.png" 
+      [alt]="country.name.common + ' flag'"
+      class="flag-image"
+    />
+  </div>
+  
+  <div class="card-content">
+    <h2 class="country-name">{{ country.name.common }}</h2>
+    
+    <ul class="country-info">
+      <li class="country-info__item">
+        <span class="country-info__label">Population:</span>
+        <span class="country-info__value">{{ country.population }}</span>
+      </li>
+      <li class="country-info__item">
+        <span class="country-info__label">Region:</span>
+        <span class="country-info__value">{{ country.region }}</span>
+      </li>
+      <li class="country-info__item">
+        <span class="country-info__label">Capital:</span>
+        <span class="country-info__value">{{ country.capital }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

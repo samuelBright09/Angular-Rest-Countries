@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CountriesService } from './services/countries.service';
+import { CountryListComponent } from "./components/country-list/country-list.component";
+
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,4 @@ import { CountriesService } from './services/countries.service';
 })
 export class AppComponent {
   
-  private countrisesService = inject(CountriesService);
-constructor() {
-  this.showCountries()
-}
-  showCountries() {
-    return this.countrisesService.getCountries();
-  }
 }
