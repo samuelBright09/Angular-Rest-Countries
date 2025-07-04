@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Country } from '../../interfaces/country';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-country-card',
@@ -9,4 +10,9 @@ import { Country } from '../../interfaces/country';
 })
 export class CountryCardComponent {
   @Input() country!: Country;
+  private router = inject(Router);
+
+  onClick(code: string): void {
+    this.router.navigate(['countries', code]);
+  }
 }

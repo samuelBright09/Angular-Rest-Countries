@@ -1,20 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { CountryState } from "../../interfaces/country";
+import { ThemeState } from "../../interfaces/theme";
 
-export const selectCountriesState =
-  createFeatureSelector<CountryState>('countries');
+export const selectThemeState = createFeatureSelector<ThemeState>('themeToggle');
 
-export const selectCountries = createSelector(
-  selectCountriesState,
-  (state: CountryState) => state.countries
-);
-
-export const selectLoading = createSelector(
-  selectCountriesState,
-  (state: CountryState) => state.loading
-);
-
-export const selectCountry = createSelector(
-  selectCountriesState,
-  (state: CountryState) => state.country
+export const selectTheme = createSelector(
+  selectThemeState,
+  (state: ThemeState) => state.isDarkMode
 );
