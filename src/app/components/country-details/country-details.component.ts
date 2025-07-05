@@ -6,6 +6,7 @@ import { Country } from '../../interfaces/country';
 import { selectCountry } from '../../store/countries/country.selector';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { loadCountry } from '../../store/countries/country.actions';
+import { searchCountry } from '../../store/search/search.actions';
 
 @Component({
   selector: 'app-country-details',
