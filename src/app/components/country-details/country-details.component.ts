@@ -1,22 +1,38 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Country } from '../../interfaces/country';
+import { selectCountry } from '../../store/countries/country.selector';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { loadCountry } from '../../store/countries/country.actions';
 
 @Component({
   selector: 'app-country-details',
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe, CommonModule],
   templateUrl: './country-details.component.html',
-  styleUrl: './country-details.component.scss'
+  styleUrl: './country-details.component.scss',
 })
 export class CountryDetailsComponent implements OnInit {
-private route = inject(ActivatedRoute)
-private store = inject(Store);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private store = inject(Store);
 
-country$!: Observable<Country | undefined>
+  code!: string;
+  country$: Observable<Country | undefined> = this.store.select(selectCountry);
 
-ngOnInit(): void {
-  
-}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.code = params.get('code') || '';
+      if (this.code) {
+        this.store.dispatch(loadCountry({ code: this.code }));
+      } else {
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  showBorderCountryDetails(country: string): void {
+    this.router.navigate(['countries', country]);
+  }
 }

@@ -5,7 +5,11 @@ export interface Country {
     region:     Region;
     population: number;
     cca3:       string;
-    borders?:   string[];
+    subregion:  string;
+    tld:          string[];
+    borders:   string[];
+    currencies: Currencies;
+    languages: Languages;
 }
 
 export interface Flags {
@@ -25,6 +29,20 @@ export interface NativeName {
     common:   string;
 }
 
+export interface Languages {
+    [key: string]: string;
+  }; 
+
+  export interface Currencies {
+    [key: string]: CurrencyInfo;
+  }
+
+
+  export interface CurrencyInfo {
+            name: string;
+            symbol: string;
+  }
+  
 export type Region = "Africa" | "Asia" | "Oceania" | "Europe" | "Americas" | "Antarctic";
 
 

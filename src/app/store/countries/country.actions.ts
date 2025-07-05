@@ -27,7 +27,7 @@ export const loadCountrySuccess = createAction(
 
 export const loadCountry = createAction(
   '[Countries API] Load Country',
-  props<{ id: string }>()
+  props<{ code: string }>()
 );
 
 
