@@ -6,38 +6,51 @@
             Back
           </button>
   
-        <!-- <section class="country-info">
+        <section class="country-info">
+            @if(country$ | async; as country){  
           <img
-            src=""
-            alt=""
+            [src]="country.flags.png"
+            [alt]="country.name.common + ' flag'"
             class="country-info-flag"
           />
-  
-          <div class="country-info-details">
-            <h2 class="country-info-name">{{ country.name }}</h2>
+          
+             <div class="country-info-details">
+            <h2 class="country-info-name">{{ country.name.common }}</h2>
             <div class="country-info-meta">
-              <p><strong>Native Name:</strong> {{ country.nativeName }}</p>
+              <p><strong>Native Name:</strong> {{ country.name.common }}</p>
               <p><strong>Population:</strong> {{ country.population }}</p>
               <p><strong>Region:</strong> {{ country.region }}</p>
-              <p><strong>Sub Region:</strong> {{ country.subRegion }}</p>
+              <p><strong>Sub Region:</strong> {{ country.region }}</p>
               <p><strong>Capital:</strong> {{ country.capital }}</p>
             </div>
             <div class="country-info-meta country-info-meta-secondary">
-              <p><strong>Top Level Domain:</strong> {{ country.topLevelDomain }}</p>
-              <p><strong>Currencies:</strong> {{ country.currencies }}</p>
-              <p><strong>Languages:</strong> {{ country.languages }}</p>
+              <p><strong>Top Level Domain:</strong> {{ country.tld }}</p>
+              <p><strong>Currencies:</strong>
+                @for(currency of country.currencies | keyvalue; track currency.key){
+                    {{ currency.value.name }}
+                }
+            </p>
+                
+              <p><strong>Languages:</strong> 
+                @for(lang of country.languages | keyvalue; track lang.key){
+                    {{ lang.value }}
+                }
+            </p>
             </div>
           </div>
-  
+          
           <div class="country-info-borders">
-            <h3>Border Countries:</h3>
-            <div class="border-countries-list">
-              @for (border of country.borderCountries; track border) {
-                <button class="app-button border-country-button">
-                  {{ border }}
-                </button>
-              }
+              <h3>Border Countries:</h3>
+              <div class="border-countries-list">
+                  @for (border of country.borders; track border) {
+                      <button (click)="showBorderCountryDetails(border)" class="app-button border-country-button">
+                          {{ border }}
+                        </button>
+                    }
+                </div>
             </div>
-          </div>
-        </section> -->
+        }
+        </section>
+
+        
       </main>

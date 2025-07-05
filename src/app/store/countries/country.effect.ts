@@ -45,7 +45,7 @@ export class CountryEffects {
     this.actions$.pipe(
       ofType(loadCountry),
       switchMap((action) =>
-        this.countryService.getCountryByCode(action.id).pipe(
+        this.countryService.getCountryByCode(action.code).pipe(
           map((country) => loadCountrySuccess({ country })),
           catchError((error) => {
             console.error('Error loading countries:', error);

@@ -36,7 +36,8 @@ export class CountriesService {
   }
 
   getCountryByCode(code: string): Observable<Country> {
-    return this.http.get<Country>(`${this.BASE_URL}/alpha/${code}`).pipe(
+    return this.http.get<Country[]>(`${this.BASE_URL}/alpha/${code}`).pipe(
+      map(countries => countries[0]), //the API returns an array with one country)
       catchError((error) => {
         return throwError(() => error);
       })
