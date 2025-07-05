@@ -39,6 +39,7 @@ export class SearchAndFilterComponent implements OnInit, OnDestroy {
       .subscribe((query) => {
         this.store.dispatch(searchCountry({ query }));
       });
+
   }
 
   onInput(event: Event): void {

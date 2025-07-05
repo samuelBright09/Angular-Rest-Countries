@@ -1,0 +1,49 @@
+@use '../../styles/mixins' as *;
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  @include flex-between;
+  padding: 1.875rem 1rem;
+  max-width: 100vw;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+
+  @media (min-width: 1025px) {
+    padding: 1.5rem 5rem;
+  }
+
+  .container{
+    @include flex-between;
+    width: 100%;
+
+    .header-title{
+      font-size: 0.875rem;
+      font-weight: bold;
+      line-height: 1.125rem;
+
+      @media (min-width:1025px) {
+       font-size: 1.25rem;
+      }
+    }
+
+    .header-theme-switcher{
+      @include flex-center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      line-height: auto;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      outline: none;
+
+      @media (min-width:1025px) {
+        font-size: 1rem;
+      }
+    }
+  }
+}
