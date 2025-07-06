@@ -13,6 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { countryReducer } from './store/countries/country.reducer';
 import { themeReducer } from './store/theme/theme.reducer';
 import { CountryEffects } from './store/countries/country.effect';
+import { ThemeEffects } from './store/theme/theme.effect';
 import { SearchReducer } from './store/search/search.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
       themeToggle: themeReducer,
       search: SearchReducer
     }),
-    provideEffects(CountryEffects),
+    provideEffects([CountryEffects, ThemeEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
