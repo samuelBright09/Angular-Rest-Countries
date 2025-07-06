@@ -1,1 +1,8 @@
-<p>theme-toggle works!</p>
+<button class="theme-toggle-btn" (click)="toggleTheme()" [attr.aria-label]="(isDarkMode$ | async) ? 'Switch to light mode' : 'Switch to dark mode'">
+  <img 
+    [src]="(isDarkMode$ | async) ? 'assets/icon-sun.svg' : 'assets/icon-moon.png'" 
+    [alt]="(isDarkMode$ | async) ? 'Sun Icon' : 'Moon Icon'"
+    class="theme-icon"
+  >
+  <span class="theme-text">{{ (isDarkMode$ | async) ? 'Light' : 'Dark' }} Mode</span>
+</button>

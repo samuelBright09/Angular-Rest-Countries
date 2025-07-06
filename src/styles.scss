@@ -1,17 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Titan+One&display=swap');
 
+:root {
+  /* Light theme variables */
+  --background-color: #fafafa;
+  --text-color: #111517;
+  --card-background: #ffffff;
+  --input-background: #ffffff;
+  --border-color: #e5e5e5;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-bg: #f5f5f5;
+  --focus-color: #4285f4;
+  --icon-filter: none;
+  --placeholder-color: #9ca3af;
+}
+
+/* Dark theme variables */
+.dark-theme {
+  --background-color: #202c37;
+  --text-color: #ffffff;
+  --card-background: #2b3945;
+  --input-background: #2b3945;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --hover-bg: #3a4a5a;
+  --focus-color: #64b5f6;
+  --icon-filter: invert(1);
+  --placeholder-color: #a0a0a0;
+}
+
+/* Light theme class for explicit light mode */
+.light-theme {
+  --background-color: #fafafa;
+  --text-color: #111517;
+  --card-background: #ffffff;
+  --input-background: #ffffff;
+  --border-color: #e5e5e5;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-bg: #f5f5f5;
+  --focus-color: #4285f4;
+  --icon-filter: none;
+  --placeholder-color: #9ca3af;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
 body {
   padding: 0 1rem 1rem 1rem;
   height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
-  background-color: #fafafa;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   @media (min-width: 480px) {
     padding: 0 2rem 2rem 2rem;
@@ -20,4 +69,38 @@ body {
   @media (min-width: 1024px){
     padding: 0 5rem 3rem 5rem;
   }
+}
+
+/* Global theme-aware styles */
+.card, .country-card, .filter-dropdown {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+input, select, textarea {
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+input::placeholder {
+  color: var(--placeholder-color);
+}
+
+/* Link styles */
+a {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--focus-color);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
