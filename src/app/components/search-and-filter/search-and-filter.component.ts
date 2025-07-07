@@ -24,6 +24,7 @@ export class SearchAndFilterComponent implements OnInit, OnDestroy {
   regions$ = this.store.select(selectRegions);
 
   ngOnInit(): void {
+    this.store.dispatch(searchCountry({ query: "" }));
     // Load regions when component initializes
     this.store.dispatch(loadRegions());
     

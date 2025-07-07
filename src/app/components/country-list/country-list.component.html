@@ -1,15 +1,22 @@
 <section class="container">
   <app-search-and-filter></app-search-and-filter>
+  <p>Showing list of {{(countries$ | async)?.length }} countries.</p>
   <div class="country-list-container">
     @if(loading$ | async) {
     <div>
       <p>Loading...</p>
     </div>
 
-    }@else { @for(country of countries$ | async; track country.name) {
-    <div class="country-item">
-      <app-country-card [country]="country"></app-country-card>
-    </div>
-    } }
+    }@else { 
+      @if ((countries$ | async)?.length === 0) {
+        <p>No countries match your search and filter</p>
+      } @else { 
+        @for (country of countries$ | async; track country.name) {
+          <div class="country-item">
+            <app-country-card [country]="country"></app-country-card>
+          </div>
+        }
+      }
+    }
   </div>
 </section>
