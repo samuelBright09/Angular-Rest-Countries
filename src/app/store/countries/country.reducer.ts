@@ -3,6 +3,7 @@ import { CountryState } from '../../interfaces/country';
 import {
   loadCountries,
   loadCountriesSuccess,
+  loadCountry,
   loadCountrySuccess,
   loadRegionsSuccess,
   setSelectedRegion,
@@ -37,12 +38,12 @@ export const countryReducer = createReducer(
       selectedRegion: region,
     };
   }),
-  // on(loadCountry, (state) => {
-  //   return {
-  //     ...state,
-  //     loading: true,
-  //   };
-  // }),
+  on(loadCountry, (state) => {
+    return {
+      ...state,
+      loading: true,
+    };
+  }),
 
   on(loadCountrySuccess, (state, { country }) => {
     return {

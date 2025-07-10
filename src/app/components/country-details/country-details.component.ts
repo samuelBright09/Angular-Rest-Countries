@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Country } from '../../interfaces/country';
-import { selectCountry } from '../../store/countries/country.selector';
+import { selectCountry, selectLoading } from '../../store/countries/country.selector';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { loadCountry } from '../../store/countries/country.actions';
 import { searchCountry } from '../../store/search/search.actions';
@@ -21,6 +21,7 @@ export class CountryDetailsComponent implements OnInit {
 
   code!: string;
   country$: Observable<Country | undefined> = this.store.select(selectCountry);
+  loading$ = this.store.select(selectLoading);
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {

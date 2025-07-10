@@ -4,12 +4,14 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from "rxjs";
 import { CountriesService } from "../../services/countries.service";
 import { loadCountries, loadCountriesSuccess, loadCountry, loadCountrySuccess, loadRegions, loadRegionsSuccess } from "./country.actions";
+import { Store } from "@ngrx/store";
 
 @Injectable()
 export class CountryEffects {
   private actions$ = inject(Actions);
   private countryService = inject(CountriesService);
   private route = inject(ActivatedRoute);
+  private store = inject(Store)
 
   loadCountries$ = createEffect(() =>
     this.actions$.pipe(
